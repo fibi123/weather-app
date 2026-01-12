@@ -17,7 +17,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(useMateria l3: true).copyWith
+      theme: ThemeData.dark(useMaterial3: true),
       home: const WeatherScreen(),
     );
   }
