@@ -29,11 +29,23 @@ class _WeatherScreenState extends State<WeatherScreen> {
   body: Column (
     children: [
       //main card
-      const Placeholder(
-        fallbackHeight: 250,
-        // child: const Text ('Main Cart')
+      Container(
+        child: Card(
+          child: Column(
+            children: [
+              Text('300°F',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+              )),
+            ]
+          )
+        ),
       ),
-      const SizedBox(height: 10),
+      const SizedBox(height: 20),
+      const Placeholder(
+        fallbackHeight: 150,
+      ),
       const Placeholder(
         fallbackHeight: 150,
       ),
