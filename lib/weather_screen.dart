@@ -24,32 +24,46 @@ class _WeatherScreenState extends State<WeatherScreen> {
             onPressed: () {},
             icon: const Icon(Icons.refresh),
           )
-        ]aaaaaaaaaaaa
+        ]
     ),
-  body: Column (
-    children: [
-      //main card
-      Container(
-        child: Card(
-          child: Column(
-            children: [
-              Text('300°F',
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              )),
-            ]
-          )
+  body: Padding(
+    padding: const EdgeInsets.all(.0),
+    child: Column (
+      children: [
+        //main card
+        SizedBox(
+          width: double.infinity,
+          child: Card(
+            child: Column(
+              children: [
+                Text('300°F',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Icon(Icons.cloud,
+                     size: 64
+                ),
+                Text(
+                    'Rain',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ))
+              ]
+            )
+          ),
         ),
-      ),
-      const SizedBox(height: 20),
-      const Placeholder(
-        fallbackHeight: 150,
-      ),
-      const Placeholder(
-        fallbackHeight: 150,
-      ),
-    ],
+        const SizedBox(height: 20),
+        const Placeholder(
+          fallbackHeight: 150,
+        ),
+        const Placeholder(
+          fallbackHeight: 150,
+        ),
+      ],
+    ),
   )
     );
   }
