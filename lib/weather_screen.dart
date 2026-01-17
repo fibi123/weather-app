@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -38,27 +40,36 @@ class _WeatherScreenState extends State<WeatherScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16)
             ),
-            child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Text('300°F',
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Icon(Icons.cloud,
-                       size: 64
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                      'Rain',
+            child: ClipRReact(
+              borderRadius: BorderRadius.circular(16),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: 10,
+                  sigmaY: 10,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      Text('300°F',
                       style: TextStyle(
-                        fontSize: 20,
-                      ))
-                ]
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Icon(Icons.cloud,
+                           size: 64
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                          'Rain',
+                          style: TextStyle(
+                            fontSize: 20,
+                          ))
+                    ]
+                  ),
+                ),
               ),
             ),
           ),
