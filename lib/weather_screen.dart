@@ -27,7 +27,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ]
     ),
   body: Padding(
-    padding: const EdgeInsets.all(.0),
+    padding: EdgeInsets.all(16.0),
     child: Column (
       children: [
         //main card
@@ -39,7 +39,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
               borderRadius: BorderRadius.circular(16)
             ),
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0),
               child: Column(
                 children: [
                   Text('300°F',
@@ -60,15 +60,16 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       ))
                 ]
               ),
-            )
+            ),
           ),
         ),
         const SizedBox(height: 20),
         const Placeholder(
-          fallbackHeight: 150,
+          fallbackHeight: 120,
         ),
+        const SizedBox(height: 20),
         const Placeholder(
-          fallbackHeight: 150,
+          fallbackHeight: 120,
         ),
       ],
     ),
