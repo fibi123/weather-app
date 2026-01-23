@@ -40,7 +40,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16)
             ),
-            child: ClipRReact(
+            child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: BackdropFilter(
                 filter: ImageFilter.blur(
