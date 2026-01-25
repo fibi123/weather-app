@@ -96,20 +96,30 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     '03:00',
                      style: TextStyle(
                       fontSize: 16,
-                    fontWeight: FontWeight.bold
-                  )
-                ]
-              )
-            )
+                      fontWeight: FontWeight.bold
+                  ),
+                  ),
+                  const SizedBox(height: 8),
+                  Icon(
+                    Icons.cloud,
+                    size: 32,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '320.12',
+                  ),
+                ],
+              ),
+            ),
 
-          ]
+          ],
         ),
         const Placeholder(
-          fallbackHeight: 120,
+          fallbackHeight: 12,
         ),
         const SizedBox(height: 20),
         const Placeholder(
-          fallbackHeight: 120,
+          fallbackHeight: 12,
         ),
       ],
     ),
