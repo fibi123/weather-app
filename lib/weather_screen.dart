@@ -119,7 +119,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ),
         const SizedBox(height: 20),
         const Placeholder(
-          fallbackHeight: 12,
+          fallbackHeight: 6,
         ),
       ],
     ),
