@@ -86,14 +86,16 @@ class _WeatherScreenState extends State<WeatherScreen> {
             )
         ),
         //weather forecast card
-        const SizedBox(height: 20),
+        const SizedBox(height: 16),
         Row(
           children: [
-            SizedBox(
-              width: 100,
-              child: Card(
+              Card(
+                elevation:6,
                 child: Container (
                   padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   child: Column(
                     children:[
                       Text(
@@ -114,7 +116,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   ),
                 ),
               ),
-            ),
+
 
           ],
         ),
