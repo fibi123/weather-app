@@ -85,30 +85,34 @@ class _WeatherScreenState extends State<WeatherScreen> {
               fontWeight: FontWeight.bold,
             )
         ),
+        //weather forecast card
         const SizedBox(height: 20),
         Row(
           children: [
             SizedBox(
               width: 100,
-              child: Column(
-                children:[
-                  Text(
-                    '03:00',
-                     style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
+              child: Card(
+                child: Container (
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children:[
+                      Text(
+                        '03:00',
+                         style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold
+                      ),
+                      ),
+                      const SizedBox(height: 8),
+                      Icon(
+                        Icons.cloud,
+                        size: 32,
+                      ),
+                      const SizedBox(height: 8),
+                      Text('320.12'),
+                    ],
                   ),
-                  ),
-                  const SizedBox(height: 8),
-                  Icon(
-                    Icons.cloud,
-                    size: 32,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    '320.12',
-                  ),
-                ],
+                ),
               ),
             ),
 
