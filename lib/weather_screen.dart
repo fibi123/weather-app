@@ -53,7 +53,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     children: [
                       Text('300°F',
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -76,8 +76,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
             ),
           ),
         ),
+
         //weather forecast cards
-        const SizedBox(height: 20),
+        const SizedBox(height: 18),
         const Text('Weather Forecast',
             style: TextStyle(
               fontSize: 24,
@@ -85,7 +86,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             )
         ),
         //weather forecast card
-        const SizedBox(height: 16),
+        const SizedBox(height: 12),
         const SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -101,12 +102,33 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ),
 
         //Additional Information Section
-        const SizedBox(height: 20),
+        // const SizedBox(height: 12),
         const Text('Additional Information',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-            )
+            ),
+        ),
+        const SizedBox(height:6),
+        Row(
+          children: [
+            const Column(
+            children: [
+              Icon(
+                Icons.water_drop,
+                size: 32,
+              ),
+              Text(
+              'Humidity',
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+              ),
+              ),
+              Text('94'),
+            ],
+          ),
+          ],
         ),
       ],
     ),
