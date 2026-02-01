@@ -86,7 +86,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ),
         //weather forecast card
         const SizedBox(height: 16),
-        SingleChildScrollView(
+        const SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
@@ -99,12 +99,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
             ],
           ),
         ),
-        const Placeholder(
-          fallbackHeight: 12,
-        ),
+
+        //Additional Information Section
         const SizedBox(height: 20),
-        const Placeholder(
-          fallbackHeight: 6,
+        const Text('Additional Information',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            )
         ),
       ],
     ),
