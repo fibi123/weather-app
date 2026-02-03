@@ -118,16 +118,50 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 Icons.water_drop,
                 size: 32,
               ),
+              SizedBox(height: 8),
+              Text('Humidity'),
+              SizedBox(height: 8),
               Text(
-              'Humidity',
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                  '94',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
               ),
-              ),
-              Text('94'),
             ],
           ),
+            const Column(
+              children: [
+                Icon(
+                  Icons.water_drop,
+                  size: 32,
+                ),
+                Text(
+                  'Humidity',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text('94'),
+              ],
+            ),
+            const Column(
+              children: [
+                Icon(
+                  Icons.water_drop,
+                  size: 32,
+                ),
+                Text(
+                  'Humidity',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text('94'),
+              ],
+            ),
           ],
         ),
       ],
