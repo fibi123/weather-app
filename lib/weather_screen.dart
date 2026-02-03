@@ -113,7 +113,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ),
         const SizedBox(height:6),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround, //requires multiple components
           children: [
+            AdditionalInfoItem(),
+            AdditionalInfoItem(),
             AdditionalInfoItem(),
           ],
         ),
