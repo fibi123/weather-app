@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'additional_info_item.dart';
+import 'hourly_forecast_item.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
@@ -112,56 +114,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         const SizedBox(height:6),
         Row(
           children: [
-            const Column(
-            children: [
-              Icon(
-                Icons.water_drop,
-                size: 32,
-              ),
-              SizedBox(height: 8),
-              Text('Humidity'),
-              SizedBox(height: 8),
-              Text(
-                  '94',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-              ),
-            ],
-          ),
-            const Column(
-              children: [
-                Icon(
-                  Icons.water_drop,
-                  size: 32,
-                ),
-                Text(
-                  'Humidity',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text('94'),
-              ],
-            ),
-            const Column(
-              children: [
-                Icon(
-                  Icons.water_drop,
-                  size: 32,
-                ),
-                Text(
-                  'Humidity',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text('94'),
-              ],
-            ),
+            AdditionalInfoItem(),
           ],
         ),
       ],
@@ -171,37 +124,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
   }
 }
 
-class HourlyForecastItem extends StatelessWidget {
-  const HourlyForecastItem({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation:6,
-      child: Container (
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: const Column(
-          children:[
-            Text(
-              '03:00',
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold
-              ),
-            ),
-            SizedBox(height: 8),
-            Icon(
-              Icons.cloud,
-              size: 32,
-            ),
-            SizedBox(height: 8),
-            Text('320.12'),
-          ],
-        ),
-      ),
-    );
-  }
-}
+
+
