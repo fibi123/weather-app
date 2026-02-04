@@ -53,7 +53,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   padding: EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      Text('300°F',
+                      Text('300K',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -93,12 +93,36 @@ class _WeatherScreenState extends State<WeatherScreen> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              HourlyForecastItem(),
-              HourlyForecastItem(),
-              HourlyForecastItem(),
-              HourlyForecastItem(),
-              HourlyForecastItem(),
-              HourlyForecastItem(),
+              HourlyForecastItem(
+                time: '00:00',
+                icon: Icons.cloud,
+                temperature: '301.22',
+              ),
+              HourlyForecastItem(
+                time: '03:00',
+                icon: Icons.sunny,
+                temperature: '300.52',
+              ),
+              HourlyForecastItem(
+                time: '00:00',
+                icon: Icons.cloud,
+                temperature: '301.22',
+              ),
+              HourlyForecastItem(
+                time: '00:00',
+                icon: Icons.sunny,
+                temperature: '301.22',
+              ),
+              HourlyForecastItem(
+                time: '00:00',
+                icon: Icons.cloud,
+                temperature: '301.22',
+              ),
+              HourlyForecastItem(
+                time: '00:00',
+                icon: Icons.sunny,
+                temperature: '301.22',
+              ),
             ],
           ),
         ),
@@ -115,9 +139,21 @@ class _WeatherScreenState extends State<WeatherScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround, //requires multiple components
           children: [
-            AdditionalInfoItem(),
-            AdditionalInfoItem(),
-            AdditionalInfoItem(),
+            AdditionalInfoItem(
+              icon: Icons.water_drop,
+              label: 'Humidity',
+              value: '91'
+            ),
+            AdditionalInfoItem(
+              icon: Icons.air,
+              label: 'Wind Speed',
+              value: '1000',
+            ),
+            AdditionalInfoItem(
+              icon: Icons.beach_access,
+              label: 'Pressure',
+              value: '1000'
+            ),
           ],
         ),
       ],
