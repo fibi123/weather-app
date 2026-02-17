@@ -15,6 +15,7 @@ class WeatherScreen extends StatefulWidget {
 
 
 class _WeatherScreenState extends State<WeatherScreen> {
+  double temp = 0;
   @override
   void initState() {
     super.initState();
@@ -34,7 +35,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
       if (data['cod']!=200){
         throw 'An unexpected error occurred';
       }
-      print(data['list'][0]['main']['temp']);
+      setState(() {
+        temp = data['main']['temp'];
+      });
     } catch (e) {
       throw e.toString();
     }
@@ -82,15 +85,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   padding: EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      Text('300K',
+                      Text('$temp K',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         ),
                       ),
                       const SizedBox(height: 16),
-
-                      Icon(Icons.cloud,
+                      const Icon(Icons.cloud,
                            size: 64
                       ),
                       const SizedBox(height: 16),
