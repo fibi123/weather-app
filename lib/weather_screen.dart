@@ -15,7 +15,9 @@ class WeatherScreen extends StatefulWidget {
 
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  double temp = 0;
+  double temp = 270;
+  bool isLoading = false;
+
   @override
   void initState() {
     super.initState();
@@ -24,6 +26,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   Future getCurrentWeather() async {
     try{
+      setState(() {
+        isLoading = true;
+      });
       String cityName = 'London';
       final res = await http.get(
         Uri.parse(
@@ -37,6 +42,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
       }
       setState(() {
         temp = data['main']['temp'];
+        isLoading = false;
       });
     } catch (e) {
       throw e.toString();
@@ -61,7 +67,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
           )
         ]
     ),
-  body: Padding(
+    body:  isLoading
+        ? const CircularProgressIndicator()
+        : Padding(
     padding: EdgeInsets.all(16.0),
     child: Column (
       crossAxisAlignment: CrossAxisAlignment.start,
