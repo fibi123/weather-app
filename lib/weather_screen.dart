@@ -26,9 +26,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   Future getCurrentWeather() async {
     try{
-      setState(() {
-        isLoading = true;
-      });
       String cityName = 'London';
       final res = await http.get(
         Uri.parse(
@@ -40,10 +37,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
       if (data['cod']!=200){
         throw 'An unexpected error occurred';
       }
-      setState(() {
-        temp = data['main']['temp'];
-        isLoading = false;
-      });
+      return data;
+      //temp = data['main']['temp'];
     } catch (e) {
       throw e.toString();
     }
@@ -67,137 +62,142 @@ class _WeatherScreenState extends State<WeatherScreen> {
           )
         ]
     ),
-    body:  isLoading
-        ? const CircularProgressIndicator()
-        : Padding(
-    padding: EdgeInsets.all(16.0),
-    child: Column (
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        //main card
-        SizedBox(
-          width: double.infinity,
-          child: Card(
-            elevation: 10,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16)
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(
-                  sigmaX: 10,
-                  sigmaY: 10,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Text('$temp K',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+    body:FutureBuilder(
+      future: ,
+      builder: (context, snapshot) {
+        print(snapshot);
+        print(snapshot.runtimeType);
+        return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column (
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          //main card
+          SizedBox(
+            width: double.infinity,
+            child: Card(
+              elevation: 10,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16)
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 10,
+                    sigmaY: 10,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        Text('200 K',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      const Icon(Icons.cloud,
-                           size: 64
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                          'Rain',
-                          style: TextStyle(
-                            fontSize: 20,
-                          )
-                      )
-                    ]
+                        const SizedBox(height: 16),
+                        const Icon(Icons.cloud,
+                             size: 64
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                            'Rain',
+                            style: TextStyle(
+                              fontSize: 20,
+                            )
+                        )
+                      ]
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
 
-        //weather forecast cards
-        const SizedBox(height: 18),
-        const Text('Weather Forecast',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            )
-        ),
-        //weather forecast card
-        const SizedBox(height: 12),
-        const SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
+          //weather forecast cards
+          const SizedBox(height: 18),
+          const Text('Weather Forecast',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              )
+          ),
+          //weather forecast card
+          const SizedBox(height: 12),
+          const SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                HourlyForecastItem(
+                  time: '00:00',
+                  icon: Icons.cloud,
+                  temperature: '301.22',
+                ),
+                HourlyForecastItem(
+                  time: '03:00',
+                  icon: Icons.sunny,
+                  temperature: '300.52',
+                ),
+                HourlyForecastItem(
+                  time: '00:00',
+                  icon: Icons.cloud,
+                  temperature: '301.22',
+                ),
+                HourlyForecastItem(
+                  time: '00:00',
+                  icon: Icons.sunny,
+                  temperature: '301.22',
+                ),
+                HourlyForecastItem(
+                  time: '00:00',
+                  icon: Icons.cloud,
+                  temperature: '301.22',
+                ),
+                HourlyForecastItem(
+                  time: '00:00',
+                  icon: Icons.sunny,
+                  temperature: '301.22',
+                ),
+              ],
+            ),
+          ),
+
+          //Additional Information Section
+          // const SizedBox(height: 12),
+          const Text('Additional Information',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+          ),
+          const SizedBox(height:6),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround, //requires multiple components
             children: [
-              HourlyForecastItem(
-                time: '00:00',
-                icon: Icons.cloud,
-                temperature: '301.22',
+              AdditionalInfoItem(
+                icon: Icons.water_drop,
+                label: 'Humidity',
+                value: '91'
               ),
-              HourlyForecastItem(
-                time: '03:00',
-                icon: Icons.sunny,
-                temperature: '300.52',
+              AdditionalInfoItem(
+                icon: Icons.air,
+                label: 'Wind Speed',
+                value: '1000',
               ),
-              HourlyForecastItem(
-                time: '00:00',
-                icon: Icons.cloud,
-                temperature: '301.22',
-              ),
-              HourlyForecastItem(
-                time: '00:00',
-                icon: Icons.sunny,
-                temperature: '301.22',
-              ),
-              HourlyForecastItem(
-                time: '00:00',
-                icon: Icons.cloud,
-                temperature: '301.22',
-              ),
-              HourlyForecastItem(
-                time: '00:00',
-                icon: Icons.sunny,
-                temperature: '301.22',
+              AdditionalInfoItem(
+                icon: Icons.beach_access,
+                label: 'Pressure',
+                value: '1000'
               ),
             ],
           ),
-        ),
-
-        //Additional Information Section
-        // const SizedBox(height: 12),
-        const Text('Additional Information',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-        ),
-        const SizedBox(height:6),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround, //requires multiple components
-          children: [
-            AdditionalInfoItem(
-              icon: Icons.water_drop,
-              label: 'Humidity',
-              value: '91'
-            ),
-            AdditionalInfoItem(
-              icon: Icons.air,
-              label: 'Wind Speed',
-              value: '1000',
-            ),
-            AdditionalInfoItem(
-              icon: Icons.beach_access,
-              label: 'Pressure',
-              value: '1000'
-            ),
-          ],
-        ),
-      ],
-    ),
-  )
+        ],
+      ),
+        );
+      },
+    )
     );
   }
 }
