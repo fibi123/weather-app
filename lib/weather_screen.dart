@@ -15,7 +15,7 @@ class WeatherScreen extends StatefulWidget {
 
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  double temp = 270;
+  double temp = 0;
   bool isLoading = false;
 
   @override
