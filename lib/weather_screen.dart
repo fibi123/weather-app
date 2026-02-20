@@ -66,7 +66,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
       future: getCurrentWeather(),
       builder: (context, snapshot) {
         print(snapshot);
-        print(snapshot.runtimeType);
+        if(snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        }
+
+        if(snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        }
         return Padding(
       padding: EdgeInsets.all(16.0),
       child: Column (
