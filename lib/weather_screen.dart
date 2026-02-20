@@ -63,7 +63,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ]
     ),
     body:FutureBuilder(
-      future: ,
+      future: getCurrentWeather(),
       builder: (context, snapshot) {
         print(snapshot);
         print(snapshot.runtimeType);
