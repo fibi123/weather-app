@@ -24,7 +24,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     getCurrentWeather();
   }
 
-  Future getCurrentWeather() async {
+  Future <Map<String, dynamic>> getCurrentWeather() async {
     try{
       String cityName = 'London';
       final res = await http.get(
@@ -65,14 +65,25 @@ class _WeatherScreenState extends State<WeatherScreen> {
     body:FutureBuilder(
       future: getCurrentWeather(),
       builder: (context, snapshot) {
-        print(snapshot);
         if(snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
+          return const Center
+            (child: CircularProgressIndicator.adaptive(),
+          );
         }
 
         if(snapshot.hasError) {
-          return Text(snapshot.error.toString());
+          return Center(
+              child: Text(
+                  snapshot.error.toString()
+              )
+          );
         }
+        // if (snapshot.hasData) { -> used to check if data is present
+        //
+        // }
+        final data = snapshot.data;
+        final currentTemp = data?['main']['temp'];
+        final currentSky = data['list'][0]['weather']['main']
         return Padding(
       padding: EdgeInsets.all(16.0),
       child: Column (
@@ -97,7 +108,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     padding: EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        Text('200 K',
+                        Text('$currentTemp K',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
