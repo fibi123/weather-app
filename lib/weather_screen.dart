@@ -82,9 +82,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
         //
         // }
         final data = snapshot.data;
+
         final currentTemp = data?['main']['temp'];
-        final currentSky = data['list'][0]['weather']['main']
-        return Padding(
+        final currentSky = data?['weather'][0]['main'];
+        final currentPressure = data?['main']['pressure'];
+
+      return Padding(
       padding: EdgeInsets.all(16.0),
       child: Column (
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,13 +118,16 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           ),
                         ),
                         const SizedBox(height: 16),
-                        const Icon(Icons.cloud,
+                        Icon(
+                            currentSky == 'Clouds' || currentSky == 'Rain'
+                                ? Icons.cloud
+                                : Icons.sunny,
                              size: 64
                         ),
                         const SizedBox(height: 16),
                         Text(
-                            'Rain',
-                            style: TextStyle(
+                            currentSky,
+                            style: const TextStyle(
                               fontSize: 20,
                             )
                         )
@@ -206,7 +212,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
               AdditionalInfoItem(
                 icon: Icons.beach_access,
                 label: 'Pressure',
-                value: '1000'
+                value: currentPressure.toString(),
               ),
             ],
           ),
