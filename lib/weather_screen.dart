@@ -86,6 +86,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
         final currentTemp = data?['main']['temp'];
         final currentSky = data?['weather'][0]['main'];
         final currentPressure = data?['main']['pressure'];
+        final currentHumidity = data?['main']['humidity'];
+        final currentWindSpeed = data?['wind']['speed'];
 
       return Padding(
       padding: EdgeInsets.all(16.0),
@@ -202,12 +204,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
               AdditionalInfoItem(
                 icon: Icons.water_drop,
                 label: 'Humidity',
-                value: '91'
+                value: currentHumidity.toString()
               ),
               AdditionalInfoItem(
                 icon: Icons.air,
                 label: 'Wind Speed',
-                value: '1000',
+                value: currentWindSpeed.toString(),
               ),
               AdditionalInfoItem(
                 icon: Icons.beach_access,
