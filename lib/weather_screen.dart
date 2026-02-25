@@ -29,12 +29,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
       String cityName = 'London';
       final res = await http.get(
         Uri.parse(
-            'https://api.openweathermap.org/data/2.5/weather?q=$cityName&APPID=$openWeatherAPIKey'
+            'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&APPID=$openWeatherAPIKey'
         ),
       );
 
       final data = jsonDecode(res.body);
-      if (data['cod']!=200){
+      if (data['cod']!='200'){
         throw 'An unexpected error occurred';
       }
       return data;
@@ -75,19 +75,20 @@ class _WeatherScreenState extends State<WeatherScreen> {
           return Center(
               child: Text(
                   snapshot.error.toString()
-              )
+              ),
           );
         }
         // if (snapshot.hasData) { -> used to check if data is present
         //
         // }
-        final data = snapshot.data;
+        final data = snapshot.data!;
 
-        final currentTemp = data?['main']['temp'];
-        final currentSky = data?['weather'][0]['main'];
-        final currentPressure = data?['main']['pressure'];
-        final currentHumidity = data?['main']['humidity'];
-        final currentWindSpeed = data?['wind']['speed'];
+        final currentWeatherData = data['list'][0];
+        final currentTemp = currentWeatherData['main']['temp'];
+        final currentSky = currentWeatherData['weather'][0]['main'];
+        final currentPressure = currentWeatherData['main']['pressure'];
+        final currentHumidity = currentWeatherData['main']['humidity'];
+        final currentWindSpeed = currentWeatherData['wind']['speed'];
 
       return Padding(
       padding: EdgeInsets.all(16.0),
@@ -151,22 +152,39 @@ class _WeatherScreenState extends State<WeatherScreen> {
           ),
           //weather forecast card
           const SizedBox(height: 12),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                for(int i=0; i<5; i++)
-                HourlyForecastItem(
-                  time: data![i+1]['dt'].toString(),
-                  icon: Icons.cloud,
-                  temperature: data![i+1]['main']['temp'],
-                ),
-              ],
-            ),
-          ),
+          // SingleChildScrollView(
+          //   scrollDirection: Axis.horizontal,
+          //   child: Row(
+          //     children: [
+          //       for(int i=0; i<5; i++)
+          //       HourlyForecastItem(
+          //         time: data['list'][i+1]['dt'].toString(),
+          //         icon: data['list'][i+1]['weather'][0]['main'] ==
+          //               'Clouds' ||
+          //             data['list'][i+1]['weather'][0]['main'] ==
+          //                 'Rain'
+          //             ? Icons.cloud
+          //             : Icons.sunny,
+          //         temperature:
+          //             data['list'][i+1]['main']['temp'].toString(),
+          //       ),
+          //     ],
+          //   ),
+          // ),
 
           //Additional Information Section
-          // const SizedBox(height: 12),
+
+          ListView.builder(
+            itemCount: 5,
+            itemBuilder: (context, index) {
+              final hourlyForecast = data['list'][index+1];
+              return HourlyForecastItem(
+                  time: time,
+                  temperature: temperature,
+                  icon: icon)
+            },
+          ),
+          const SizedBox(height: 10),
           const Text('Additional Information',
               style: TextStyle(
                 fontSize: 24,
