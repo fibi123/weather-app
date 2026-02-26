@@ -174,15 +174,24 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
           //Additional Information Section
 
-          ListView.builder(
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              final hourlyForecast = data['list'][index+1];
-              return HourlyForecastItem(
-                  time: time,
-                  temperature: temperature,
-                  icon: icon)
-            },
+          SizedBox(
+            height: 120,
+            child: ListView.builder(
+              itemCount: 5,
+              scrollDirection: Axis.horizontal ,
+              itemBuilder: (context, index) {
+                final hourlyForecast = data['list'][index+1];
+                final hourlySky = data['list'][index+1]['weather'][0]['main'];
+                final hourlyTemp = hourlyForecast['main']['temp'].toString();
+                return HourlyForecastItem(
+                    time: hourlyForecast['dt_txt'].toString(),
+                    temperature: hourlyTemp,
+                    icon: hourlySky == 'Clouds' || hourlySky == 'Rain'
+                          ? Icons.cloud
+                          : Icons.sunny,
+                );
+              },
+            ),
           ),
           const SizedBox(height: 10),
           const Text('Additional Information',
