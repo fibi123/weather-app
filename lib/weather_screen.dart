@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app/secrets.dart';
 import 'additional_info_item.dart';
 import 'hourly_forecast_item.dart';
@@ -143,15 +144,15 @@ class _WeatherScreenState extends State<WeatherScreen> {
           ),
 
           //weather forecast cards
-          const SizedBox(height: 18),
+          const SizedBox(height: 8),
           const Text('Weather Forecast',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               )
           ),
           //weather forecast card
-          const SizedBox(height: 12),
+          const SizedBox(height: 10),
           // SingleChildScrollView(
           //   scrollDirection: Axis.horizontal,
           //   child: Row(
@@ -181,14 +182,17 @@ class _WeatherScreenState extends State<WeatherScreen> {
               scrollDirection: Axis.horizontal ,
               itemBuilder: (context, index) {
                 final hourlyForecast = data['list'][index+1];
-                final hourlySky = data['list'][index+1]['weather'][0]['main'];
-                final hourlyTemp = hourlyForecast['main']['temp'].toString();
+                final hourlySky =
+                    data['list'][index+1]['weather'][0]['main'];
+                final hourlyTemp =
+                    hourlyForecast['main']['temp'].toString();
+                final time = DateTime.parse(hourlyForecast['dt_txt']);
                 return HourlyForecastItem(
-                    time: hourlyForecast['dt_txt'].toString(),
+                    time: DateFormat.j().format(time),
                     temperature: hourlyTemp,
                     icon: hourlySky == 'Clouds' || hourlySky == 'Rain'
                           ? Icons.cloud
-                          : Icons.sunny,
+                          : Icons.water,
                 );
               },
             ),
@@ -196,7 +200,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           const SizedBox(height: 10),
           const Text('Additional Information',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
           ),
