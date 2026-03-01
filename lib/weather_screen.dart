@@ -14,7 +14,6 @@ class WeatherScreen extends StatefulWidget {
   State<WeatherScreen> createState() => _WeatherScreenState();
 }
 
-
 class _WeatherScreenState extends State<WeatherScreen> {
   double temp = 0;
   bool isLoading = false;
@@ -178,12 +177,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
           SizedBox(
             height: 120,
             child: ListView.builder(
-              itemCount: 5,
+              itemCount: 10,
               scrollDirection: Axis.horizontal ,
               itemBuilder: (context, index) {
                 final hourlyForecast = data['list'][index+1];
                 final hourlySky =
-                    data['list'][index+1]['weather'][0]['main'];
+                    hourlyForecast['weather'][0]['main'];
                 final hourlyTemp =
                     hourlyForecast['main']['temp'].toString();
                 final time = DateTime.parse(hourlyForecast['dt_txt']);
@@ -192,7 +191,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     temperature: hourlyTemp,
                     icon: hourlySky == 'Clouds' || hourlySky == 'Rain'
                           ? Icons.cloud
-                          : Icons.water,
+                          : Icons.water_drop_sharp,
                 );
               },
             ),
@@ -209,7 +208,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceAround, //requires multiple components
             children: [
               AdditionalInfoItem(
-                icon: Icons.water_drop,
+                icon: Icons.cloud_circle,
                 label: 'Humidity',
                 value: currentHumidity.toString()
               ),

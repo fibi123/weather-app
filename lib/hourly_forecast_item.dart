@@ -37,7 +37,7 @@ class HourlyForecastItem extends StatelessWidget {
               size: 32,
             ),
             const SizedBox(height: 8),
-            Text('320.12'),
+            Text(temperature),
           ],
         ),
       ),
