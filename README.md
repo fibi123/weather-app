@@ -1,16 +1,10 @@
 # weather_app
 
-A new Flutter project.
+A weather app built using the flutter framework. It is an adaptive UI that will change according to the OS (iOS/Android). 
+The weather API was integrated to show real-time weather and forecasted weather. Icons are changeable according to the weather as well. A loading screen is utilized to allow time for the details from the API to be loaded properly. ListView is also added to allow the user to check upto 10 weather cards. 
+
+<img width="441" height="787" alt="image" src="https://github.com/user-attachments/assets/658ba293-3ae4-419e-8207-9831442e8be9" />
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
