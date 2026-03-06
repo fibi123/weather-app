@@ -10,7 +10,3 @@ A weather app built using the Flutter framework. It is an adaptive UI that will 
 - ListView allows the user to check up to 10 weather cards.
 
 <img width="441" height="787" alt="image" src="https://github.com/user-attachments/assets/658ba293-3ae4-419e-8207-9831442e8be9" />
-
-
-## Getting Started
-
